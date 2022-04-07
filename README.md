@@ -62,7 +62,7 @@ $$
 
 首先对检测框的中心位置进行可视化，如下图，可以看到检测框在 y 轴分布较均匀，在 x 轴的中间和中间偏左比较集中。
 
-<img src="G:\project\GitHub\Kaggle-Cots-detection\assets\readme\position-xy.png" alt="position-xy" style="zoom:80%;" />
+<img src="\assets\readme\position-xy.png" alt="position-xy" style="zoom:80%;" />
 
 <center>pic.4 检测框中心位置
 
