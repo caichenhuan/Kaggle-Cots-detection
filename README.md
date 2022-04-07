@@ -18,7 +18,9 @@
 
 ### 评估指标
 
-此比赛根据 $F_2-Score$ 来计算分数，预测框与真实框的 $IoU$ 值达到阈值则为正确识别，同时该指标以 0.05 的步长扫描 0.3 到 0.8 范围内的 $IoU$ 阈值，计算每个阈值的 $F_2-Score$ 分数，最终求和平均的值即为提交分数。使得更多的海星被成功预测同时容忍一些误判，可以提高 $F_2-Score$ 分数。
+此比赛根据 `F2-Score` 来计算分数，预测框与真实框的 `IoU` 值达到阈值则为正确识别，同时该指标以 0.05 的步长扫描 0.3 到 0.8 范围内的 `IoU` 阈值，计算每个阈值的 `F2-Score`  分数，最终求和平均的值即为提交分数。使得更多的海星被成功预测同时容忍一些误判，可以提高  分`F2-Score` 数。
+
+![formula_fscore](G:\project\GitHub\Kaggle-Cots-detection\assets\readme\formula_fscore.png)
 $$
 F_\beta-Score=(1+{\beta}^2)\cdot \frac{Percision \cdot Recall}{\beta^2 \cdot Percision + Recall}\\Precision=\frac{TP}{TP+FP}~~~~Recall=\frac{TP}{TP+FN}
 $$
@@ -32,15 +34,15 @@ $$
 - `train_images/` - 训练数据集，形如 `video_{video_id}/{video_frame}.jpg`.
 - `annotations` - 储存 Python 字符串格式的海星检测框的数据，在 test.csv 中不可用，描述了边界框由图像左下角的像素坐标`(x_min, y_min)`及其以像素为单位的`width`和`height`，（COCO格式）
 
-<img src="C:\Users\c\AppData\Roaming\Typora\typora-user-images\image-20220405212154568.png" alt="image-20220405212154568" style="zoom:80%;" />
+<img src="assets\readme\image-1.png" alt="image-1" style="zoom:80%;" />
 
 <center>picture-1（包含目标框）</center>
 
-<img src="C:\Users\c\AppData\Roaming\Typora\typora-user-images\image-20220405212209784.png" alt="image-20220405212209784" style="zoom:80%;" />
+<img src="assets\readme\image-2.png" alt="image-2" style="zoom:80%;" />
 
 <center>picture-2（包含目标框）</center>
 
-<img src="C:\Users\c\AppData\Roaming\Typora\typora-user-images\image-20220405212905413.png" alt="image-20220405212905413" style="zoom:80%;" />
+<img src="assets\readme\traincsv.png" alt="traincsv" style="zoom:80%;" />
 
 <center>train.csv部分</center>
 
@@ -68,15 +70,15 @@ $$
 
 接下来对检测框的大小进行分析，如下图，可以观察到检测框的大小集中在 `20 x 20 ~ 60 x 60`左右，部分大的可以达到`200 x 200`的像素，总体来说尺寸较小。
 
-<img src="G:\project\GitHub\Kaggle-Cots-detection\assets\readme\lenth-bbox.png" alt="lenth-bbox" style="zoom:80%;" />
+<img src="assets\readme\lenth-bbox.png" alt="lenth-bbox" style="zoom:80%;" />
 
 <center>pic.5 检测框的长度和宽度
 
 ### 3. 训练策略
 
-- **baseline**：训练了 1280 分辨率的 yolov5s 模型，使用默认参数，得到 f2-score 0.546。
+- **baseline**：训练了 1280 分辨率的 yolov5s 模型，使用默认参数，得到 `F2-score` 0.546。
 
-- **高分辨率**：由于检测目标尺寸较小，使用更大的分辨率可以在一定程度上提高分数，于是尝试训练了 1280、2560、3000、3500 分辨率的 yolov5 模型，同时也使用不同分辨率来推理，最后在 3000 推理分辨率的情况下得到一下的测试结果（线上 f2-score）：
+- **高分辨率**：由于检测目标尺寸较小，使用更大的分辨率可以在一定程度上提高分数，于是尝试训练了 1280、2560、3000、3500 分辨率的 yolov5 模型，同时也使用不同分辨率来推理，最后在 3000 推理分辨率的情况下得到一下的测试结果（线上 `F2-score`）：
 
   | **YOLOv5s分辨率选择** | **F2-Scores** |
   | :-------------------- | ------------- |
@@ -89,13 +91,13 @@ $$
 
 - **数据增强**：修改数据增强的方式，尝试多种不同的参数与增强方法，实验发现，增加水平竖直翻转和随机旋转对分数有提高，同时设置 mosaic 0.25，mixup 0.5，scale 0.5，使得线上和线下的分数有了一点提高（+0.01）。
 
-- **设置置信度阈值**：默认的置信度阈值是 0.6，其实可以更低，本次比赛的评分标准是$F_2-Score$，这意味着识别出更多的正类比减少更多的错误预测更重要，在yolov5中设置$F_2-Score$的计算，同时实验了不同的置信度阈值，得到阈值为 0.1 的时候线下和线上分数都相对更高。
+- **设置置信度阈值**：默认的置信度阈值是 0.6，其实可以更低，本次比赛的评分标准是`F2-Score`，这意味着识别出更多的正类比减少更多的错误预测更重要，在yolov5中设置`F2-Score`的计算，同时实验了不同的置信度阈值，得到阈值为 0.1 的时候线下和线上分数都相对更高。
 
 - **Tracking**：考虑到预测视频的前后帧是强相关的，所以在预测时加入了 tracking 的方法。比较常用的有 Deepsort 方法，是利用匈牙利算法和卡尔曼滤波的一种 tracking 方法，在本次比赛中最终使用的时 Norfair 的方法，原理和 Deepsort大同小异，Norfair 可以使用欧几里得距离来查找轨迹。具体 Norfair 库的说明请看官方说明 [Norfair - GitHub](https://github.com/tryolabs/norfair) 
 
 - **WBF**：WBF 即加权框融合算法，和 NMS 类似是一种去除冗余框并融合框的方法，但根据算法的不同这两种方法得到的效果也不同，WBF 算法虽然更耗时，但在做多模型合并预测结果的时候有更好的结果，下图为 WBF 和 NMS 的一点区别，WBF 使用了所有的预测框来共同计算得到最终的框，NMS 是丢弃了一些预测框。
 
-  ![image-20220407222252285](C:\Users\c\AppData\Roaming\Typora\typora-user-images\image-20220407222252285.png)
+  <img src="assets\readme\WBF.png" alt="WBF" style="zoom:80%;" />
 
 - **模型融合**：考虑到多尺度以及稳定性，于是使用模型融合，最终使用一个 1280 分辨率和一个 3000 分辨率的 yolov5 模型。
 
