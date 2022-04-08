@@ -20,7 +20,7 @@
 
 此比赛根据 `F2-Score` 来计算分数，预测框与真实框的 `IoU` 值达到阈值则为正确识别，同时该指标以 0.05 的步长扫描 0.3 到 0.8 范围内的 `IoU` 阈值，计算每个阈值的 `F2-Score`  分数，最终求和平均的值即为提交分数。使得更多的海星被成功预测同时容忍一些误判，可以提高  分`F2-Score` 数。
 
-![formula_fscore](assets\readme\formula_fscore.png)
+<img src="assets\readme\formula_fscore.png" alt="formula_fscore" style="zoom:80%;" />
 
 ## 数据集简介
 
