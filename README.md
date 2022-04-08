@@ -94,7 +94,7 @@ pic.5 检测框的长度和宽度
 
 - **Tracking**：考虑到预测视频的前后帧是强相关的，所以在预测时加入了 tracking 的方法。比较常用的有 Deepsort 方法，是利用匈牙利算法和卡尔曼滤波的一种 tracking 方法，在本次比赛中最终使用的时 Norfair 的方法，原理和 Deepsort大同小异，Norfair 可以使用欧几里得距离来查找轨迹。具体 Norfair 库的说明请看官方说明 [Norfair - GitHub](https://github.com/tryolabs/norfair) 
 
-- **WBF**：WBF 即加权框融合算法，和 NMS 类似是一种去除冗余框并融合框的方法，但根据算法的不同这两种方法得到的效果也不同，WBF 算法虽然更耗时，但在做多模型合并预测结果的时候有更好的结果，下图为 WBF 和 NMS 的一点区别，WBF 使用了所有的预测框来共同计算得到最终的框，NMS 是丢弃了一些预测框。
+- **WBF**：WBF 即加权框融合算法，和 NMS 类似是一种去除冗余框并融合框的方法，但根据算法的不同这两种方法得到的效果也不同，WBF 算法虽然更耗时，但在做多模型合并预测结果的时候有更好的结果，下图为 WBF 和 NMS 的一点区别，WBF 使用了所有的预测框来共同计算得到最终的框，NMS 是丢弃了一些预测框。更多细节可查看官方说明 [WBF - GitHub](https://github.com/ZFTurbo/Weighted-Boxes-Fusion)
 
   <img src="assets\readme\WBF.png" alt="WBF" style="zoom:80%;" />
 
