@@ -111,13 +111,24 @@ $$
 
 
 
+## 其他说明
 
+### repo说明
 
+- 训练代码：`train.ipynb`
+- 推理代码：`infer.ipynb`
 
+### Reference
 
+[https://www.kaggle.com/code/awsaf49/great-barrier-reef-yolov5-train](https://www.kaggle.com/code/awsaf49/great-barrier-reef-yolov5-train)
 
+[https://www.kaggle.com/code/awsaf49/great-barrier-reef-yolov5-infer](https://www.kaggle.com/code/awsaf49/great-barrier-reef-yolov5-infer)
 
+[https://arxiv.org/pdf/1910.13302.pdf](https://arxiv.org/pdf/1910.13302.pdf)
 
+[https://github.com/tryolabs/norfair](https://github.com/tryolabs/norfair)
+
+[https://www.kaggle.com/competitions/tensorflow-great-barrier-reef/discussion/300638](https://www.kaggle.com/competitions/tensorflow-great-barrier-reef/discussion/300638)
 
 
 
