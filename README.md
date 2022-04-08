@@ -20,10 +20,7 @@
 
 此比赛根据 `F2-Score` 来计算分数，预测框与真实框的 `IoU` 值达到阈值则为正确识别，同时该指标以 0.05 的步长扫描 0.3 到 0.8 范围内的 `IoU` 阈值，计算每个阈值的 `F2-Score`  分数，最终求和平均的值即为提交分数。使得更多的海星被成功预测同时容忍一些误判，可以提高  分`F2-Score` 数。
 
-![formula_fscore](G:\project\GitHub\Kaggle-Cots-detection\assets\readme\formula_fscore.png)
-$$
-F_\beta-Score=(1+{\beta}^2)\cdot \frac{Percision \cdot Recall}{\beta^2 \cdot Percision + Recall}\\Precision=\frac{TP}{TP+FP}~~~~Recall=\frac{TP}{TP+FN}
-$$
+![formula_fscore](assets\readme\formula_fscore.png)
 
 ## 数据集简介
 
@@ -36,15 +33,15 @@ $$
 
 <img src="assets\readme\image-1.png" alt="image-1" style="zoom:80%;" />
 
-<center>picture-1（包含目标框）</center>
+picture-1（包含目标框）
 
 <img src="assets\readme\image-2.png" alt="image-2" style="zoom:80%;" />
 
-<center>picture-2（包含目标框）</center>
+picture-2（包含目标框）
 
 <img src="assets\readme\traincsv.png" alt="traincsv" style="zoom:80%;" />
 
-<center>train.csv部分</center>
+train.csv部分
 
 
 
@@ -64,15 +61,17 @@ $$
 
 首先对检测框的中心位置进行可视化，如下图，可以看到检测框在 y 轴分布较均匀，在 x 轴的中间和中间偏左比较集中。
 
-<img src="\assets\readme\position-xy.png" alt="position-xy" style="zoom:80%;" />
+<img src="assets\readme\position-xy.png" alt="position-xy" style="zoom:80%;" />
 
-<center>pic.4 检测框中心位置
+pic.4 检测框中心位置
+
 
 接下来对检测框的大小进行分析，如下图，可以观察到检测框的大小集中在 `20 x 20 ~ 60 x 60`左右，部分大的可以达到`200 x 200`的像素，总体来说尺寸较小。
 
 <img src="assets\readme\lenth-bbox.png" alt="lenth-bbox" style="zoom:80%;" />
 
-<center>pic.5 检测框的长度和宽度
+pic.5 检测框的长度和宽度
+
 
 ### 3. 训练策略
 
