@@ -33,15 +33,15 @@
 
 <img src="assets\readme\image-1.png" alt="image-1" style="zoom:80%;" />
 
-​																	picture-1（包含目标框）
+​                                                                picture-1（包含目标框）
 
 <img src="assets\readme\image-2.png" alt="image-2" style="zoom:80%;" />
 
-​																			picture-2（包含目标框）
+​                                                                   picture-2（包含目标框）
 
 <img src="assets\readme\traincsv.png" alt="traincsv" style="zoom:80%;" />
 
-​																					train.csv部分
+​                                                                             train.csv部分
 
 
 
@@ -83,9 +83,34 @@
 
 
 
-   
 
-​								pic.4 检测框中心位置  														pic.5 检测框的长度和宽度
+
+
+<img src="assets\readme\position-xy.png" width = "50%" alt="***" align=left /><img src="assets\readme\lenth-bbox.png" width = "50%"  alt="***" align=right />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+pic.4 检测框中心位置  														pic.5 检测框的长度和宽度
 
 
 ### 3. 训练策略
