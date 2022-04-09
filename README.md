@@ -33,15 +33,15 @@
 
 <img src="assets\readme\image-1.png" alt="image-1" style="zoom:80%;" />
 
-picture-1（包含目标框）
+​																	picture-1（包含目标框）
 
 <img src="assets\readme\image-2.png" alt="image-2" style="zoom:80%;" />
 
-picture-2（包含目标框）
+​																			picture-2（包含目标框）
 
 <img src="assets\readme\traincsv.png" alt="traincsv" style="zoom:80%;" />
 
-train.csv部分
+​																					train.csv部分
 
 
 
@@ -59,18 +59,33 @@ train.csv部分
 
 对数据集中的 BBox 的数据分布进行可视化，对后续的策略能有一定的启发。
 
-首先对检测框的中心位置进行可视化，如下图，可以看到检测框在 y 轴分布较均匀，在 x 轴的中间和中间偏左比较集中。
+首先对检测框的中心位置进行可视化，如左下图 (pic.4)，可以看到检测框在 y 轴分布较均匀，在 x 轴的中间和中间偏左比较集中。接下来对检测框的大小进行分析，如右下图 (pic.5)，可以观察到检测框的大小集中在 `20 x 20 ~ 60 x 60`左右，部分大的可以达到`200 x 200`的像素，总体来说尺寸较小。
 
-<img src="assets\readme\position-xy.png" alt="position-xy" style="zoom:80%;" />
+<center class="half">
+<img src="assets\readme\position-xy.png" width = "50%" alt="***" align=left />
+<img src="assets\readme\lenth-bbox.png" width = "50%"  alt="***" align=right />
+<center>
 
-pic.4 检测框中心位置
 
 
-接下来对检测框的大小进行分析，如下图，可以观察到检测框的大小集中在 `20 x 20 ~ 60 x 60`左右，部分大的可以达到`200 x 200`的像素，总体来说尺寸较小。
 
-<img src="assets\readme\lenth-bbox.png" alt="lenth-bbox" style="zoom:80%;" />
 
-pic.5 检测框的长度和宽度
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+
+​								pic.4 检测框中心位置  														pic.5 检测框的长度和宽度
 
 
 ### 3. 训练策略
@@ -129,7 +144,12 @@ pic.5 检测框的长度和宽度
 
 [https://www.kaggle.com/competitions/tensorflow-great-barrier-reef/discussion/300638](https://www.kaggle.com/competitions/tensorflow-great-barrier-reef/discussion/300638)
 
+### TODO
 
+- 别人的TOP方法
+- 代码整理
+- 英文版 readme
+- 重新训练得到分数上传到wandb
 
 
 
