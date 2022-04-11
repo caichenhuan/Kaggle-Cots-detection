@@ -1,5 +1,7 @@
 # Kaggle-Cots-detection
 
+[Readme - Eng - version](https://github.com/RaphaelCCH-K/Kaggle-Cots-detection/blob/main/README-eng.md)
+
 使用目标检测的方法来检测海底视频中的海星。
 
 比赛链接： [Kaggle: TensorFlow - Help Protect the Great Barrier Reef](https://www.kaggle.com/competitions/tensorflow-great-barrier-reef/overview)
@@ -31,17 +33,17 @@
 - `train_images/` - 训练数据集，形如 `video_{video_id}/{video_frame}.jpg`.
 - `annotations` - 储存 Python 字符串格式的海星检测框的数据，在 test.csv 中不可用，描述了边界框由图像左下角的像素坐标`(x_min, y_min)`及其以像素为单位的`width`和`height`，（COCO格式）
 
+![cots](G:\project\GitHub\Kaggle-Cots-detection\assets\readme\cots.gif)
+
+<p align="center">加上目标框的视频</p>
+
 <img src="assets\readme\image-1.png" alt="image-1" style="zoom:80%;" />
 
-​                                                                picture-1（包含目标框）
-
-<img src="assets\readme\image-2.png" alt="image-2" style="zoom:80%;" />
-
-​                                                                   picture-2（包含目标框）
+<p align="center">picture-1（包含目标框）</p>
 
 <img src="assets\readme\traincsv.png" alt="traincsv" style="zoom:80%;" />
 
-​                                                                             train.csv部分
+<p align="center">train.csv部分</p>
 
 
 
@@ -61,7 +63,7 @@
 
 首先对检测框的中心位置进行可视化，如左下图 (pic.4)，可以看到检测框在 y 轴分布较均匀，在 x 轴的中间和中间偏左比较集中。接下来对检测框的大小进行分析，如右下图 (pic.5)，可以观察到检测框的大小集中在 `20 x 20 ~ 60 x 60`左右，部分大的可以达到`200 x 200`的像素，总体来说尺寸较小。
 
-|         pic.4 检测框中心位置          |       pic.5 检测框的长度和宽度       |
+|            检测框中心位置             |          检测框的长度和宽度          |
 | :-----------------------------------: | :----------------------------------: |
 | ![1](./assets/readme/position-xy.png) | ![2](./assets/readme/lenth-bbox.png) |
 
@@ -90,6 +92,8 @@
 - **WBF**：WBF 即加权框融合算法，和 NMS 类似是一种去除冗余框并融合框的方法，但根据算法的不同这两种方法得到的效果也不同，WBF 算法虽然更耗时，但在做多模型合并预测结果的时候有更好的结果，下图为 WBF 和 NMS 的一点区别，WBF 使用了所有的预测框来共同计算得到最终的框，NMS 是丢弃了一些预测框。更多细节可查看官方说明 [WBF - GitHub](https://github.com/ZFTurbo/Weighted-Boxes-Fusion)
 
   <img src="assets\readme\WBF.png" alt="WBF" style="zoom:80%;" />
+
+  <p align="center">WBF 算法的可视化</p>
 
 - **模型融合**：考虑到多尺度以及稳定性，于是使用模型融合，最终使用一个 1280 分辨率和一个 3000 分辨率的 yolov5 模型。
 
@@ -124,7 +128,7 @@
 
 ### TODO
 
-- 别人的TOP方法
+- TOP方法
 - 代码整理
 - 英文版 readme
 - 重新训练得到分数上传到wandb
