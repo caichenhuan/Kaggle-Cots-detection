@@ -33,7 +33,7 @@
 - `train_images/` - 训练数据集，形如 `video_{video_id}/{video_frame}.jpg`.
 - `annotations` - 储存 Python 字符串格式的海星检测框的数据，在 test.csv 中不可用，描述了边界框由图像左下角的像素坐标`(x_min, y_min)`及其以像素为单位的`width`和`height`，（COCO格式）
 
-![cots](G:\project\GitHub\Kaggle-Cots-detection\assets\readme\cots.gif)
+![cots](./assets/readme/cots.gif)
 
 <p align="center">加上目标框的视频</p>
 
