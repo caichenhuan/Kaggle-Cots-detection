@@ -28,40 +28,40 @@ The source of the dataset: [The CSIRO Crown-of-Thorn Starfish Detection Dataset]
 
 The training dataset is 3 videos, consisting of 23503 1280 x 720 images, and the train.csv file containing the target boxes in the images. The figure following is the display of the target box in the image.
 
-- `train_images/` - 训练数据集，形如 `video_{video_id}/{video_frame}.jpg`.
-- `annotations` - 储存 Python 字符串格式的海星检测框的数据，在 test.csv 中不可用，描述了边界框由图像左下角的像素坐标`(x_min, y_min)`及其以像素为单位的`width`和`height`，（COCO格式）
+- `train_images/` - Folder containing training set photos of the form `video_{video_id}/{video_frame}.jpg`.
+- `annotations` - The bounding boxes of any starfish detections in a string format that can be evaluated directly with Python. Does not use the same format as the predictions you will submit. A bounding box is described by the pixel coordinate (x_min, y_min) of its upper left corner within the image together with its width and height in pixels.
 
-<img src="G:\project\GitHub\Kaggle-Cots-detection\assets\readme\image-1.png" alt="image-1" style="zoom:80%;" />
+![cots](G:\project\GitHub\Kaggle-Cots-detection\assets\readme\cots.gif)
 
-<p align="center">picture-1（包含目标框）</p>
+<p align="center">cots.gif</p>
 
 <img src="G:\project\GitHub\Kaggle-Cots-detection\assets\readme\image-2.png" alt="image-2" style="zoom:80%;" />
 
-<p align="center">picture-2（包含目标框）</p>
+<p align="center">picture-1</p>
 
 <img src="G:\project\GitHub\Kaggle-Cots-detection\assets\readme\traincsv.png" alt="traincsv" style="zoom:80%;" />
 
-<p align="center">train.csv部分</p>
+<p align="center">train.csv</p>
 
 
 
-## 方案
+## Solutions
 
-### 1. 数据处理
+### 1. Data processing
 
-训练数据集总共 23501 张图片，其中 20.93% 是有BBox的，因为没有BBox的图片都是背景，对模型训练并没有什么正向作用，所以去除没有BBox的图片，剩下的作为我们的训练数据集。
+There are 23501 images in the train data, of which 20.93% have BBoxes. Because the pictures without BBox are backgrounds, they have no positive effect on model training, so we remove the them and use the rest as our training data.
 
-训练数据集分为 3 个视频，因为视频前后帧的强相关性，就不能随机拆分训练集和验证集，所以使用 3 折交叉验证，以不同的视频来划分。
+The train data is divided into 3 videos. Due to the strong correlation between the frames before and after, the train data and the valid data cannot be randomly split, so 3-fold cross-validation is used to divide them by different videos.
 
-将原始边缘框格式重写为 YOLO 格式。YOLO 格式：一个`.txt`对应一张图片，一行对应一个物体，第一部分是`class_id`，后面四个数分别是`BBox`的 (中心x坐标，中心y坐标，宽，高)，这些坐标都是 0～1 的相对坐标。将`.txt`的文件保存在`Kaggle/labels`的路径下。
+Rewrite original BBoxes format to YOLO format. 
 
-### 2. 数据分析
+### 2. Data analysis
 
-对数据集中的 BBox 的数据分布进行可视化，对后续的策略能有一定的启发。
+Visualizing the data distribution of the BBox in the dataset.
 
 首先对检测框的中心位置进行可视化，如左下图 (pic.4)，可以看到检测框在 y 轴分布较均匀，在 x 轴的中间和中间偏左比较集中。接下来对检测框的大小进行分析，如右下图 (pic.5)，可以观察到检测框的大小集中在 `20 x 20 ~ 60 x 60`左右，部分大的可以达到`200 x 200`的像素，总体来说尺寸较小。
 
-|         pic.4 检测框中心位置          |       pic.5 检测框的长度和宽度       |
+|         pic.4 Center position         |        pic.5 Length and Width        |
 | :-----------------------------------: | :----------------------------------: |
 | ![1](./assets/readme/position-xy.png) | ![2](./assets/readme/lenth-bbox.png) |
 
@@ -109,8 +109,8 @@ The training dataset is 3 videos, consisting of 23503 1280 x 720 images, and the
 
 ### repo说明
 
-- 训练代码：`train.ipynb`
-- 推理代码：`infer.ipynb`
+- 训练代码：`notebooks/train.ipynb`
+- 推理代码：`notebooks/infer.ipynb`
 
 ### Reference
 
@@ -123,13 +123,6 @@ The training dataset is 3 videos, consisting of 23503 1280 x 720 images, and the
 [https://github.com/tryolabs/norfair](https://github.com/tryolabs/norfair)
 
 [https://www.kaggle.com/competitions/tensorflow-great-barrier-reef/discussion/300638](https://www.kaggle.com/competitions/tensorflow-great-barrier-reef/discussion/300638)
-
-### TODO
-
-- TOP方法
-- 代码整理
-- 英文版 readme
-- 重新训练得到分数上传到wandb
 
 
 

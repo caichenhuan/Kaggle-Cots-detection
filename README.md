@@ -111,8 +111,8 @@
 
 ### repo说明
 
-- 训练代码：`train.ipynb`
-- 推理代码：`infer.ipynb`
+- 训练代码：`notebooks/train.ipynb`
+- 推理代码：`notebooks/infer.ipynb`
 
 ### Reference
 
